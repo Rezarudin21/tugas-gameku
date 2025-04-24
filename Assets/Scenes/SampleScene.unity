@@ -2040,6 +2040,7 @@ MonoBehaviour:
   speed: 2
   maxHealth: 30
   explosionPrefab: {fileID: 7189440731489371730, guid: 250b472c9a784f046a25dd7397d47867, type: 3}
+  gameOverUI: {fileID: 458595620}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

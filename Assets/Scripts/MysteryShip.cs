@@ -6,6 +6,7 @@ public class MysteryShip : MonoBehaviour
     public float speed = 5f;
     public int maxHealth = 25;
     public GameObject explosionPrefab;
+    public GameObject gameOverUI; // <-- Tambahan
 
     private Vector2 leftDestination;
     private Vector2 rightDestination;
@@ -21,6 +22,11 @@ public class MysteryShip : MonoBehaviour
         rightDestination = new Vector2(rightEdge.x - 1f, transform.position.y);
 
         currentHealth = maxHealth;
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false); // Pastikan awalnya tersembunyi
+        }
     }
 
     private void Update()
@@ -29,7 +35,7 @@ public class MysteryShip : MonoBehaviour
 
         if (transform.position.x >= rightDestination.x || transform.position.x <= leftDestination.x)
         {
-            direction *= -1; // balik arah
+            direction *= -1;
         }
     }
 
@@ -43,6 +49,7 @@ public class MysteryShip : MonoBehaviour
             {
                 Explode();
                 GameManager.Instance.OnMysteryShipKilled(this);
+                ShowGameOverUI();
             }
         }
     }
@@ -56,5 +63,14 @@ public class MysteryShip : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void ShowGameOverUI()
+    {
+        Time.timeScale = 0f; // Pause game
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+    }
 }
- 

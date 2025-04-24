@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private Button playAgainButton;
+    [SerializeField] private GameObject gameOverUI;       // UI Game Over
+    [SerializeField] private Button playAgainButton;      // Tombol untuk ulang game
 
     private Player player;
     private Invaders invaders;
@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         gameOverUI.SetActive(true);
+
         if (invaders != null)
             invaders.gameObject.SetActive(false);
 
@@ -124,7 +125,7 @@ public class GameManager : MonoBehaviour
 
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
     {
-        // Optional: no-op
+        // Optional: handled in MysteryShip script
     }
 
     public void OnBoundaryReached()
