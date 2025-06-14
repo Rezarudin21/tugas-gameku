@@ -7,6 +7,11 @@ TagManager:
   - Ground
   - GrapPoint
   - ClimbPoint
+  - Missile
+  - Pipe
+  - Background
+  - MysteryShip
+  - PlayerShip
   layers:
   - Default
   - TransparentFX
@@ -17,12 +22,12 @@ TagManager:
   - Ground
   - GrapPoint
   - ClimbPoint
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Missile
+  - Invader
+  - Laser
+  - PlayerShip
+  - Boundary
+  - Bunker
   - 
   - 
   - 
