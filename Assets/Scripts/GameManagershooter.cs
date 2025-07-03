@@ -7,8 +7,10 @@ public class GameManagershooter : MonoBehaviour
 {
     public static GameManagershooter Instance { get; private set; }
 
-    [SerializeField] private GameObject gameOverUI;       // UI Game Over
-    [SerializeField] private Button playAgainButton;      // Tombol untuk ulang game
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private Button playAgainButton;
+    [SerializeField] private Button exitButton; // Tambahan tombol keluar
+    [SerializeField] private string previousSceneName = "MainMenu"; // Ubah sesuai nama scene sebelumnya
 
     private Player player;
     private Invaders invaders;
@@ -35,6 +37,9 @@ public class GameManagershooter : MonoBehaviour
 
         if (playAgainButton != null)
             playAgainButton.onClick.AddListener(PlayAgain);
+
+        if (exitButton != null)
+            exitButton.onClick.AddListener(ExitToPreviousScene);
 
         NewGame();
     }
@@ -101,11 +106,16 @@ public class GameManagershooter : MonoBehaviour
     }
 
     public void PlayAgain()
-{
-    Time.timeScale = 1f;
-    SceneManager.LoadScene("SampleScene"); // Pastikan scene ini sudah ditambahkan ke Build Settings
-}
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    public void ExitToPreviousScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(previousSceneName);
+    }
 
     public void OnPlayerKilled(Player player)
     {
@@ -126,7 +136,7 @@ public class GameManagershooter : MonoBehaviour
 
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
     {
-        // Optional: handled in MysteryShip script
+        // Optional
     }
 
     public void OnBoundaryReached()
